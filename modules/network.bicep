@@ -15,7 +15,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2024-01-01' = {
 
 resource subnet 'Microsoft.Network/virtualNetworks/subnets@2024-01-01' = {
   parent: vnet
-  name: 'subnet web'
+  name: 'subnet-web'
 
   properties: {
      addressPrefix: '10.0.1.0/24'
@@ -36,7 +36,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2024-01-01' = {
           sourceAddressPrefix: '*'
           destinationAddressPrefix:'*'
           access: 'Allow'
-          priority: '1000'
+          priority: 100
           direction: 'Inbound'
         }
        }
@@ -49,7 +49,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2024-01-01' = {
           sourceAddressPrefix:'*'
           destinationAddressPrefix:'*'
           access: 'Allow'
-          priority: '110'
+          priority: 110
           direction: 'Inbound'
         }
        }
@@ -63,7 +63,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2024-01-01' = {
           sourceAddressPrefix:'*'
           destinationAddressPrefix:'*'
           access: 'Allow'
-          priority: '120'
+          priority: 120
           direction: 'Inbound'
           
         }
