@@ -32,3 +32,33 @@ resource nic 'Microsoft.Network/networkInterfaces@2024-01-01' = {
     ]
   }
 }
+
+
+resource vm 'Microsoft.Compute/virtualMachines@2024-03-01' = {
+  name:'vm-ubuntu-lab'
+  location: location
+  properties: {
+    hardwareProfile: {
+      vmSize: 'Standard_B1s'
+    }
+    osProfile: {
+      computerName: 'vm-ubuntu-lab'
+      adminUsername: 'azureuser'
+      adminPassword: 'Lab12345'
+    }
+    storageProfile: {
+      imageReference: {
+        publisher: 'Cannonical'
+        offer: '0001-com-ubuntu-server-jammy'
+        sku:'22-04-lts'
+        version: 'lastest'
+      }
+    }
+    networkProfile: {
+      networkInterfaces: [ {id: nic.id} 
+      ]
+    }
+  }
+}
+
+
